@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol QuestionViewControllerDelegate: class {
+public protocol QuestionViewControllerDelegate: AnyObject {
     func questionViewController(
         _ viewController: QuestionViewController,
         didCancel questionGroup: QuestionGroup,
