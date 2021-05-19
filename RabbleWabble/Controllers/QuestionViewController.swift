@@ -21,8 +21,52 @@ class QuestionViewController: UIViewController {
         return (view as! QuestionView)
     }
 
-    override func viewDidLoad() {
+    // MARK: - View Lifecycle
+
+    override public func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        showQuestion()
+    }
+
+    private func showQuestion() {
+        let question = questionGroup.questions[questionIndex]
+
+        questionView.answerLabel.text = question.answer
+        questionView.promptLabel.text = question.prompt
+        questionView.hintLabel.text = question.hint
+
+        questionView.answerLabel.isHidden = true
+        questionView.hintLabel.isHidden = true
+    }
+
+    // MARK: - Action
+
+    @IBAction func toggleAnswerLabels(_ sender: Any) {
+        questionView.answerLabel.isHidden = !questionView.answerLabel.isHidden
+        questionView.hintLabel.isHidden = !questionView.hintLabel.isHidden
+    }
+
+    // 1
+    @IBAction func handleCorrect(_ sender: Any) {
+        correctCount += 1
+        questionView.correctCountLabel.text = "\(correctCount)"
+        showNextQuestion()
+    }
+
+    // 2
+    @IBAction func handleIncorrect(_ sender: Any) {
+        incorrectCount += 1
+        questionView.incorrectCountLabel.text = "\(incorrectCount)"
+        showNextQuestion()
+    }
+
+    // 3
+    private func showNextQuestion() {
+        questionIndex += 1
+        guard questionIndex < questionGroup.questions.count else {
+            // TODO: - Handle this...!
+            return
+        }
+        showQuestion()
     }
 }
