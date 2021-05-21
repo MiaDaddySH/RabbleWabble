@@ -11,13 +11,6 @@ public enum DiskCaretaker {
     public static let decoder = JSONDecoder()
     public static let encoder = JSONEncoder()
 
-    public static func createDocumentURL(withFileName fileName: String) -> URL {
-        let fileManager = FileManager.default
-        let url = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        return url.appendingPathComponent(fileName)
-            .appendingPathExtension("json")
-    }
-
     public static func save<T: Codable>(_ object: T, to fileName: String) throws {
         do {
             let url = createDocumentURL(withFileName: fileName)
@@ -42,5 +35,12 @@ public enum DiskCaretaker {
             print("Retrieve failed: URL: '\(url)', Error: '\(error)'")
             throw error
         }
+    }
+
+    public static func createDocumentURL(withFileName fileName: String) -> URL {
+        let fileManager = FileManager.default
+        let url = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        return url.appendingPathComponent(fileName)
+            .appendingPathExtension("json")
     }
 }

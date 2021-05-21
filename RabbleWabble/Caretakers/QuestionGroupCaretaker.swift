@@ -28,7 +28,7 @@ public final class QuestionGroupCaretaker {
         } else {
             let bundle = Bundle.main
             let url = bundle.url(forResource: fileName, withExtension: "json")!
-            questionGroups = try! DiskCaretaker.retrieve([QuestionGroup].self, from: url.absoluteString)
+            questionGroups = try! DiskCaretaker.retrieve([QuestionGroup].self, from: url)
             try! save()
         }
     }
