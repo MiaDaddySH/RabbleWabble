@@ -16,10 +16,28 @@ public class SelectQuestionGroupViewController: UIViewController {
         }
     }
 
+    // MARK: - Lifecycle
+
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+        questionGroups.forEach {
+            print("\($0.title):" +
+                "correctCount \($0.score.correctCount), " +
+                "incorrectCount \($0.score.incorrectCount)")
+        }
+    }
+
     // MARK: - Properties
-    
-    public let questionGroups = QuestionGroup.allGroups()
-    private var selectedQuestionGroup: QuestionGroup!
+
+    private let questionGroupCaretaker = QuestionGroupCaretaker()
+    public var questionGroups: [QuestionGroup] {
+        return questionGroupCaretaker.questionGroups
+    }
+
+    private var selectedQuestionGroup: QuestionGroup! {
+        get { questionGroupCaretaker.selectedQuestionGroup }
+        set { questionGroupCaretaker.selectedQuestionGroup = newValue }
+    }
 }
 
 extension SelectQuestionGroupViewController: UITableViewDataSource {
@@ -42,23 +60,24 @@ extension SelectQuestionGroupViewController: UITableViewDelegate {
         selectedQuestionGroup = questionGroups[indexPath.row]
         return indexPath
     }
+
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let viewController = segue.destination as? QuestionViewController else {return}
-        viewController.questionsStrategy = SequentialQuestionStrategy(questionGroup: selectedQuestionGroup)
+
+    override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let viewController = segue.destination as? QuestionViewController else { return }
+        viewController.questionsStrategy = SequentialQuestionStrategy(questionGroupCaretaker: questionGroupCaretaker)
         viewController.delegate = self
     }
 }
 
-extension SelectQuestionGroupViewController: QuestionViewControllerDelegate{
-    
+extension SelectQuestionGroupViewController: QuestionViewControllerDelegate {
+
     public func questionViewController(_ viewController: QuestionViewController, didCancel questionStrategy: QuestionStrategy, at questionIndex: Int) {
         navigationController?.popToViewController(self, animated: true)
     }
-    
+
     public func questionViewController(_ viewController: QuestionViewController, didComplete questionStrategy: QuestionStrategy) {
         navigationController?.popToViewController(self, animated: true)
     }
