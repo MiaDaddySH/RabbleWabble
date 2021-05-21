@@ -16,17 +16,6 @@ public class SelectQuestionGroupViewController: UIViewController {
         }
     }
 
-    // MARK: - Lifecycle
-
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-        questionGroups.forEach {
-            print("\($0.title):" +
-                "correctCount \($0.score.correctCount), " +
-                "incorrectCount \($0.score.incorrectCount)")
-        }
-    }
-
     // MARK: - Properties
 
     private let questionGroupCaretaker = QuestionGroupCaretaker()
@@ -37,6 +26,19 @@ public class SelectQuestionGroupViewController: UIViewController {
     private var selectedQuestionGroup: QuestionGroup! {
         get { questionGroupCaretaker.selectedQuestionGroup }
         set { questionGroupCaretaker.selectedQuestionGroup = newValue }
+    }
+
+    private let appSettings = AppSettings.shared
+
+    // MARK: - Lifecycle
+
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+        questionGroups.forEach {
+            print("\($0.title):" +
+                "correctCount \($0.score.correctCount), " +
+                "incorrectCount \($0.score.incorrectCount)")
+        }
     }
 }
 
@@ -67,7 +69,7 @@ extension SelectQuestionGroupViewController: UITableViewDelegate {
 
     override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let viewController = segue.destination as? QuestionViewController else { return }
-        viewController.questionsStrategy = SequentialQuestionStrategy(questionGroupCaretaker: questionGroupCaretaker)
+        viewController.questionsStrategy = appSettings.questionStrategy(for: questionGroupCaretaker)
         viewController.delegate = self
     }
 }
