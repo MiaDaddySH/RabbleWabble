@@ -8,9 +8,11 @@
 import Foundation
 
 public enum DiskCaretaker {
+    // MARK: - Public Properties
     public static let decoder = JSONDecoder()
     public static let encoder = JSONEncoder()
 
+    // MARK: - Public Functions
     public static func save<T: Codable>(_ object: T, to fileName: String) throws {
         do {
             let url = createDocumentURL(withFileName: fileName)
