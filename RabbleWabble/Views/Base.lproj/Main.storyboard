@@ -8,6 +8,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--NewQuestionGroup-->
+        <scene sceneID="Y2X-5S-479">
+            <objects>
+                <viewControllerPlaceholder storyboardName="NewQuestionGroup" id="RWS-Yc-nv0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vhX-7v-AVb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="170" y="-514"/>
+        </scene>
         <!--Select Question Group-->
         <scene sceneID="DqL-po-ede">
             <objects>
@@ -21,20 +29,20 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuestionGroupCell" id="bGQ-yk-23L" customClass="QuestionGroupCell" customModule="RabbleWabble">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bGQ-yk-23L" id="0yw-sP-0hV">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7W-DH-VDq">
-                                                    <rect key="frame" x="20" y="11" width="332" height="21.5"/>
+                                                    <rect key="frame" x="20" y="11" width="332" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sN-SS-ukO">
-                                                    <rect key="frame" x="360" y="11" width="26" height="21.5"/>
+                                                    <rect key="frame" x="360" y="11" width="26" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -76,6 +84,11 @@
                         <barButtonItem key="leftBarButtonItem" image="ic_settings" id="JxK-RU-o53">
                             <connections>
                                 <segue destination="FXK-5S-h6H" kind="show" id="t46-Vl-T22"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="K2n-lk-7gz">
+                            <connections>
+                                <segue destination="RWS-Yc-nv0" kind="presentation" id="DZT-Op-FJq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -183,7 +196,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="294" y="-14"/>
+            <point key="canvasLocation" x="390" y="-14"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RXY-Cy-Su4">

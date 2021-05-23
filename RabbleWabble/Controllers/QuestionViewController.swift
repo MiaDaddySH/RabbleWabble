@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  QuestionViewController.swift
 //  RabbleWabble
 //
 //  Created by Yuangang Sheng on 18.05.21.
